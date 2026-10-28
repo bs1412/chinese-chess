@@ -1,2 +1,22 @@
-# chinese-chess
-A Chinese chess WeChat mini-program with AI opponent
+# 楚河汉界 · 中国象棋 🀄
+
+一个微信小程序版的中国象棋，内置完整走子规则与人机对战 AI。
+
+> 微信小程序原生框架实现。
+
+## ✨ 功能
+
+- 完整棋盘与棋子
+- 走子规则：帅/将、士、相/象、马、车、炮、兵/卒
+- 将军 / 将死检测，合法落点提示
+- 人机对战：AI 使用 Alpha-Beta 剪枝的极大极小搜索
+
+## 🛠️ 技术点
+
+- 微信小程序 WXML + WXSS + JavaScript
+- 象棋规则引擎与局面评估（`utils/xiangqi.js`）
+- 极大极小搜索 + Alpha-Beta 剪枝
+
+## 🚀 如何运行
+
+微信开发者工具导入本目录，使用测试号运行。
