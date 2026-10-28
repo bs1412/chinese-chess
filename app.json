@@ -1,0 +1,12 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "navigationBarTitleText": "楚河汉界",
+    "navigationBarBackgroundColor": "#f5eee2",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5eee2",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
