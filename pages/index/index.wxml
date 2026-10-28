@@ -1,0 +1,78 @@
+<view class="page">
+  <view class="topbar">
+    <view class="brand-mark">棋</view>
+    <view class="heading">
+      <text class="title">楚河汉界</text>
+      <text class="subtitle">中国象棋 · 单机对弈</text>
+    </view>
+    <view class="offline-tag"><view class="online-dot"></view>离线</view>
+  </view>
+
+  <view class="game-card">
+    <view class="status-row">
+      <view class="status-avatar {{turn === 'r' ? 'avatar-active' : ''}} red-avatar">帅</view>
+      <view class="status-copy">
+        <text class="status-title">{{statusTitle}}</text>
+        <text class="status-hint">{{statusHint}}</text>
+      </view>
+      <view class="status-avatar {{turn === 'b' ? 'avatar-active' : ''}} black-avatar">将</view>
+    </view>
+
+    <view class="board-wrap">
+      <view class="board">
+        <view class="board-frame"></view>
+        <view class="lattice">
+          <view class="horizontal-line" wx:for="{{horizontalLines}}" wx:key="*this" style="top: {{item}}%;"></view>
+          <view
+            class="vertical-line"
+            wx:for="{{verticalLines}}"
+            wx:key="key"
+            style="left: {{item.left}}%; top: {{item.top}}%; height: {{item.height}}%;"
+          ></view>
+          <view class="palace-line palace-top-a"></view>
+          <view class="palace-line palace-top-b"></view>
+          <view class="palace-line palace-bottom-a"></view>
+          <view class="palace-line palace-bottom-b"></view>
+        </view>
+        <view class="river-label river-left">楚 河</view>
+        <view class="river-label river-right">汉 界</view>
+        <view
+          class="touch-target"
+          wx:for="{{boardCells}}"
+          wx:key="key"
+          style="left: {{item.left}}%; top: {{item.top}}%;"
+          catchtap="onCellTap"
+          data-x="{{item.x}}"
+          data-y="{{item.y}}"
+        >
+          <view wx:if="{{item.legal && !item.piece}}" class="move-dot"></view>
+          <view wx:if="{{item.legal && item.piece}}" class="capture-mark"></view>
+          <view
+            wx:if="{{item.piece}}"
+            class="piece {{item.piece.colorClass}} {{item.selected ? 'piece-selected' : ''}}"
+          >{{item.piece.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="board-caption">
+      <text>紅方先行</text>
+      <text class="caption-separator">·</text>
+      <text>点击棋子，再点击落点</text>
+    </view>
+  </view>
+
+  <view class="controls">
+    <button class="control-button secondary-button" bindtap="undoMove" disabled="{{thinking || history.length === 0}}">
+      <text class="button-icon">↶</text>悔棋
+    </button>
+    <button class="control-button primary-button" bindtap="restartGame">
+      <text class="button-icon">⟳</text>重新开始
+    </button>
+  </view>
+  <view class="footer-note">电脑棋力：基础策略 · 将军与绝杀自动判定</view>
+  <view wx:if="{{gameOver}}" class="result-banner {{winner === 'r' ? 'result-win' : 'result-lose'}}">
+    <text class="result-title">{{resultTitle}}</text>
+    <text class="result-subtitle">{{resultHint}}</text>
+  </view>
+</view>
